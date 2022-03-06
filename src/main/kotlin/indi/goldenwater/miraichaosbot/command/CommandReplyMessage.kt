@@ -8,8 +8,11 @@ enum class CommandReplyMessage(private val message: String) {
         """
         |${p}help 显示本消息
         |${p}song <byId|search> <id|name> 根据歌曲id或歌曲名点歌(仅限网易云)
+        |${p}randomAcg 随机图片
     """.trimMargin()
     ),
+
+    GettingInfo("获取信息中"),
 
     UnknownUsage("未知的用法, 请输入${p}help查询"),
     FailedByException("发生了错误"),

@@ -2,14 +2,13 @@ package indi.goldenwater.miraichaosbot
 
 import indi.goldenwater.miraichaosbot.api.command.CommandManager
 import indi.goldenwater.miraichaosbot.command.CommandHelp
+import indi.goldenwater.miraichaosbot.command.CommandRandomAcg
 import indi.goldenwater.miraichaosbot.command.song.CommandSong
 import indi.goldenwater.miraichaosbot.command.song.SubCommandById
 import indi.goldenwater.miraichaosbot.command.song.SubCommandSearch
 import indi.goldenwater.miraichaosbot.listener.OnFriendMessageEvent
 import indi.goldenwater.miraichaosbot.listener.OnGroupMessageEvent
-import indi.goldenwater.miraichaosbot.utils.httpGet
 import indi.goldenwater.miraichaosbot.utils.initLogger
-import kotlinx.coroutines.runBlocking
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
 
@@ -26,6 +25,8 @@ object MiraiChaosBot : KotlinPlugin(
         initLogger(logger)
 
         //region Command register
+        CommandManager.addCommand(Regex("help", RegexOption.IGNORE_CASE), CommandHelp())
+
         CommandSong().let {
             CommandManager.addCommand(Regex("song", RegexOption.IGNORE_CASE), it)
 
@@ -33,7 +34,7 @@ object MiraiChaosBot : KotlinPlugin(
             it.addSubCommand(Regex("search", RegexOption.IGNORE_CASE), SubCommandSearch())
         }
 
-        CommandManager.addCommand(Regex("help", RegexOption.IGNORE_CASE), CommandHelp())
+        CommandManager.addCommand(Regex("randomAcg", RegexOption.IGNORE_CASE), CommandRandomAcg())
         //endregion
 
         //region Event register
@@ -53,6 +54,8 @@ object MiraiChaosBot : KotlinPlugin(
             it?.removeSubCommand(Regex("search", RegexOption.IGNORE_CASE))
         }
         CommandManager.removeCommand(Regex("song", RegexOption.IGNORE_CASE))
+
+        CommandManager.removeCommand(Regex("randomAcg", RegexOption.IGNORE_CASE))
         //endregion
 
         //region Event unregister

@@ -17,7 +17,7 @@ suspend fun sendMessage(target: User, message: Message) {
         target.sendMessage(message)
         return
     } else if (target is Member) {
-        target.group.sendMessage(At(target).plus(message))
+        target.group.sendMessage(At(target).plus("\n").plus(message))
         return
     }
     throw Exception("Unknown target ${target::class.jvmName}")
