@@ -30,6 +30,19 @@ object CommandManager {
         commandHandlers[command] = handler
     }
 
+    fun addCommand(command: Array<Regex>, handler: ICommandHandler) {
+        var chs = commandHandlers
+
+        for (i in command.indices) {
+            chs = chs[command[i]]?.subCommandHandlers ?: chs.also {
+                if (i == command.size - 1) {
+                    chs[command[i]] = handler
+                } else {
+                    throw IllegalArgumentException("Unknown parent command ${command[i]}")
+                }
+            }
+        }
+    }
 
     fun getCommandHandler(command: Regex): ICommandHandler? {
         return commandHandlers[command]
@@ -43,5 +56,9 @@ object CommandManager {
 
     fun removeCommand(command: Regex) {
         commandHandlers.remove(command)
+    }
+
+    fun removeAll() {
+        commandHandlers.clear()
     }
 }

@@ -16,7 +16,7 @@ object MiraiChaosBot : KotlinPlugin(
     JvmPluginDescription(
         id = "indi.goldenwater.miraichaosbot.MiraiChaosBot",
         name = "MiraiChaosBot",
-        version = "1.2.0",
+        version = "1.2.1",
     ) {
         author("Golden_Water")
     }
@@ -25,16 +25,19 @@ object MiraiChaosBot : KotlinPlugin(
         initLogger(logger)
 
         //region Command register
-        CommandManager.addCommand(Regex("help", RegexOption.IGNORE_CASE), CommandHelp())
+        val cmdHelp = Regex("help", RegexOption.IGNORE_CASE)
+        val cmdSong = Regex("song", RegexOption.IGNORE_CASE)
+        val cmdById = Regex("byId", RegexOption.IGNORE_CASE)
+        val cmdSearch = Regex("search", RegexOption.IGNORE_CASE)
+        val cmdRandomAcg = Regex("randomAcg", RegexOption.IGNORE_CASE)
 
-        CommandSong().let {
-            CommandManager.addCommand(Regex("song", RegexOption.IGNORE_CASE), it)
+        CommandManager.addCommand(cmdHelp, CommandHelp())
 
-            it.addSubCommand(Regex("byId", RegexOption.IGNORE_CASE), SubCommandById())
-            it.addSubCommand(Regex("search", RegexOption.IGNORE_CASE), SubCommandSearch())
-        }
+        CommandManager.addCommand(cmdSong, CommandSong())
+        CommandManager.addCommand(arrayOf(cmdSong, cmdById), SubCommandById())
+        CommandManager.addCommand(arrayOf(cmdSong, cmdSearch), SubCommandSearch())
 
-        CommandManager.addCommand(Regex("randomAcg", RegexOption.IGNORE_CASE), CommandRandomAcg())
+        CommandManager.addCommand(cmdRandomAcg, CommandRandomAcg())
         //endregion
 
         //region Event register
@@ -46,17 +49,7 @@ object MiraiChaosBot : KotlinPlugin(
     }
 
     override fun onDisable() {
-        //region Command unregister
-        CommandManager.removeCommand(Regex("help", RegexOption.IGNORE_CASE))
-
-        CommandManager.getCommandHandler("song").let {
-            it?.removeSubCommand(Regex("byId", RegexOption.IGNORE_CASE))
-            it?.removeSubCommand(Regex("search", RegexOption.IGNORE_CASE))
-        }
-        CommandManager.removeCommand(Regex("song", RegexOption.IGNORE_CASE))
-
-        CommandManager.removeCommand(Regex("randomAcg", RegexOption.IGNORE_CASE))
-        //endregion
+        CommandManager.removeAll()
 
         //region Event unregister
         OnFriendMessageEvent.unregister()

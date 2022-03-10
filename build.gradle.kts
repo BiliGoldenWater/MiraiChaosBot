@@ -12,7 +12,7 @@ dependencies {
 }
 
 group = "indi.goldenwater.miraichaosbot"
-version = "1.2.0"
+version = "1.2.1"
 
 repositories {
     maven("https://maven.aliyun.com/repository/public")
