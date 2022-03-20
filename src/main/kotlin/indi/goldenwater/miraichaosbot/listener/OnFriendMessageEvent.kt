@@ -15,6 +15,7 @@ object OnFriendMessageEvent {
             CommandManager.processMessage(
                 DMessageInfo(
                     event.sender,
+                    event.time
                 ),
                 event.message.contentToString()
             )

@@ -1,9 +1,9 @@
 package indi.goldenwater.miraichaosbot.api.interfaces.command
 
-import indi.goldenwater.miraichaosbot.api.interfaces.type.CommandHandlers
+import indi.goldenwater.miraichaosbot.api.interfaces.type.TCommandHandlers
 
 interface ICommandHandler {
-    val subCommandHandlers: CommandHandlers
+    val subCommandHandlers: TCommandHandlers
 
     /**
      * Process command, return true when correct usage

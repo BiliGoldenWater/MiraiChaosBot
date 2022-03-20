@@ -2,12 +2,12 @@ package indi.goldenwater.miraichaosbot.api.command
 
 import indi.goldenwater.miraichaosbot.api.interfaces.command.DMessageInfo
 import indi.goldenwater.miraichaosbot.api.interfaces.command.ICommandHandler
-import indi.goldenwater.miraichaosbot.api.interfaces.type.CommandHandlers
+import indi.goldenwater.miraichaosbot.api.interfaces.type.TCommandHandlers
 
 object CommandManager {
     var prefix: String = "&"
 
-    private val commandHandlers: CommandHandlers = mutableMapOf()
+    private val commandHandlers: TCommandHandlers = mutableMapOf()
 
     /**
      * Return true if [message] is a correct command

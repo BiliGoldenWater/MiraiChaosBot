@@ -1,7 +1,7 @@
 package indi.goldenwater.miraichaosbot.utils
 
-import indi.goldenwater.miraichaosbot.api.interfaces.type.DSearchResult
-import indi.goldenwater.miraichaosbot.api.interfaces.type.DSong
+import indi.goldenwater.miraichaosbot.api.interfaces.type.neteasecloudmusic.DSearchResult
+import indi.goldenwater.miraichaosbot.api.interfaces.type.neteasecloudmusic.DSong
 import indi.goldenwater.miraichaosbot.command.CommandReplyMessage
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.decodeFromString

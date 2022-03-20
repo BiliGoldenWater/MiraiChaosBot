@@ -1,4 +1,4 @@
-package indi.goldenwater.miraichaosbot.api.interfaces.type
+package indi.goldenwater.miraichaosbot.api.interfaces.type.neteasecloudmusic
 
 import kotlinx.serialization.json.JsonObject
 

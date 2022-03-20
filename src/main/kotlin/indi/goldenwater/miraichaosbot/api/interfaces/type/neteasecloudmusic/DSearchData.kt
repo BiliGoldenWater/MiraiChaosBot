@@ -1,4 +1,4 @@
-package indi.goldenwater.miraichaosbot.api.interfaces.type
+package indi.goldenwater.miraichaosbot.api.interfaces.type.neteasecloudmusic
 
 @kotlinx.serialization.Serializable
 data class DSearchData(

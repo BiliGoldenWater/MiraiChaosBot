@@ -1,9 +1,9 @@
 package indi.goldenwater.miraichaosbot.api.interfaces.command
 
-import indi.goldenwater.miraichaosbot.api.interfaces.type.CommandHandlers
+import indi.goldenwater.miraichaosbot.api.interfaces.type.TCommandHandlers
 
 abstract class ACommandHandler : ICommandHandler {
-    override val subCommandHandlers: CommandHandlers = mutableMapOf()
+    override val subCommandHandlers: TCommandHandlers = mutableMapOf()
 
     override suspend fun callCommand(messageInfo: DMessageInfo, command: String, args: Array<String>): Boolean {
         if (args.isEmpty()) {
