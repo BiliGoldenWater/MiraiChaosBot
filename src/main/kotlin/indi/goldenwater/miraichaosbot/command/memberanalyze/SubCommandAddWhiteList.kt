@@ -5,12 +5,14 @@ import indi.goldenwater.miraichaosbot.api.interfaces.command.DMessageInfo
 import indi.goldenwater.miraichaosbot.command.CommandReplyMessage
 import indi.goldenwater.miraichaosbot.config.Config
 import indi.goldenwater.miraichaosbot.utils.sendMessage
+import indi.goldenwater.miraichaosbot.utils.senderToMemberCheckPermission
 import net.mamoe.mirai.message.data.Message
 import net.mamoe.mirai.message.data.PlainText
 
 class SubCommandAddWhiteList : ACommandHandler() {
     override suspend fun onCommand(messageInfo: DMessageInfo, command: String, args: Array<String>): Boolean {
-        val sender = messageInfo.sender
+        val sender = senderToMemberCheckPermission(messageInfo.sender) ?: return true
+
         if (args.isEmpty()) {
             sendMessage(sender, CommandReplyMessage.UnknownUsage.s())
             return true

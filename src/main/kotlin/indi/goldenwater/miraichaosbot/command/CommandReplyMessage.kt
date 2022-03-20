@@ -21,11 +21,17 @@ enum class CommandReplyMessage(private val message: String) {
         |${p}song <search> <name> 搜索歌曲
         |${p}song <byId> <id> 根据歌曲id点歌
         |${p}randomAcg 随机图片
-        |${p}getNonactiveMembers addWhiteList <qqNumber> 添加用户至白名单
-        |${p}getNonactiveMembers removeWhiteList <qqNumber> 将用户从白名单中移除
-        |${p}getNonactiveMembers neverTalk 获取从未发言的群成员 (s:g)
-        |${p}getNonactiveMembers neverTalk <time> 获取在n秒前加入群且从未发言的群成员 (s:g)
-        |${p}getNonactiveMembers lastTalkBefore <time> 获取最后发言时间在n秒前的群成员 (s:g)
+    """.trimMargin()
+    ),
+    HelpAdmin(
+        """
+        |${p}getNonactiveMembers addWhiteList <qqNumber> 添加用户至白名单 (s:g;p:a+)
+        |${p}getNonactiveMembers removeWhiteList <qqNumber> 将用户从白名单中移除 (s:g;p:a+)
+        |${p}getNonactiveMembers neverTalk 获取从未发言的群成员 (s:g;p:a+)
+        |${p}getNonactiveMembers neverTalk <time> 获取在一段时间前加入群且从未发言的群成员 (s:g;p:a+)
+        |${p}getNonactiveMembers lastTalkBefore <time> 获取最后发言时间在一段时间前的群成员 (s:g;p:a+)
+        |  参数 time 格式: [月:]天
+        |  注: 1月直接转换为30天 不接受 [0:]0
     """.trimMargin()
     ),
 
@@ -34,8 +40,9 @@ enum class CommandReplyMessage(private val message: String) {
     Added("已添加"),
     Removed("已移除"),
 
-    GroupOnly("仅可在群内使用"),
     UnknownUsage("未知的用法, 请输入${p}help查询"),
+    GroupOnly("仅可在群内使用"),
+    NoPermission("权限不足"),
     AddFailedBy("%s 添加失败 %s"),
     FailedByException("发生了错误"),
     FailedByUnknownReason("未知的错误"),

@@ -5,12 +5,12 @@ import indi.goldenwater.miraichaosbot.api.interfaces.command.DMessageInfo
 import indi.goldenwater.miraichaosbot.command.CommandReplyMessage
 import indi.goldenwater.miraichaosbot.config.Config
 import indi.goldenwater.miraichaosbot.utils.formatWithTime
+import indi.goldenwater.miraichaosbot.utils.getTimeInSeconds
 import indi.goldenwater.miraichaosbot.utils.sendMessage
-import net.mamoe.mirai.contact.Member
+import indi.goldenwater.miraichaosbot.utils.senderToMemberCheckPermission
 import net.mamoe.mirai.contact.NormalMember
 import net.mamoe.mirai.message.data.Message
 import net.mamoe.mirai.message.data.PlainText
-import kotlin.math.max
 
 class SubCommandNeverTalk : ACommandHandler() {
     private fun isNeverTalk(member: NormalMember): Boolean {
@@ -18,20 +18,18 @@ class SubCommandNeverTalk : ACommandHandler() {
     }
 
     override suspend fun onCommand(messageInfo: DMessageInfo, command: String, args: Array<String>): Boolean {
-        val sender = messageInfo.sender
-
-        if (sender !is Member) {
-            sendMessage(sender, CommandReplyMessage.GroupOnly.s())
-            return true
-        }
+        val sender = senderToMemberCheckPermission(messageInfo.sender) ?: return true
 
         val resultMembers: MutableSet<NormalMember> = mutableSetOf()
         val joinBefore = args.let {
             if (args.isEmpty()) return@let 0
 
-            args[0].toIntOrNull()?.let {
-                max(it, 0)
-            } ?: 0
+            getTimeInSeconds(args[0])
+        }
+
+        if (joinBefore == Int.MIN_VALUE) {
+            sendMessage(messageInfo.sender, CommandReplyMessage.UnknownUsage.s())
+            return true
         }
 
         for (member in sender.group.members) {
