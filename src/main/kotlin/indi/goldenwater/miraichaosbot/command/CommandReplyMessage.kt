@@ -25,8 +25,8 @@ enum class CommandReplyMessage(private val message: String) {
     ),
     HelpAdmin(
         """
-        |${p}getNonactiveMembers addWhiteList <qqNumber> 添加用户至白名单 (s:g;p:a+)
-        |${p}getNonactiveMembers removeWhiteList <qqNumber> 将用户从白名单中移除 (s:g;p:a+)
+        |${p}getNonactiveMembers addWhiteList <qqNumber1> [qqNumber2] ... 添加用户至白名单 (s:g;p:a+)
+        |${p}getNonactiveMembers removeWhiteList <qqNumber1> [qqNumber2] ... 将用户从白名单中移除 (s:g;p:a+)
         |${p}getNonactiveMembers neverTalk 获取从未发言的群成员 (s:g;p:a+)
         |${p}getNonactiveMembers neverTalk <time> 获取在一段时间前加入群且从未发言的群成员 (s:g;p:a+)
         |${p}getNonactiveMembers lastTalkBefore <time> 获取最后发言时间在一段时间前的群成员 (s:g;p:a+)

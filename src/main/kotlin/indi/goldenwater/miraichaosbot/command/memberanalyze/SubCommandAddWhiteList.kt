@@ -30,7 +30,7 @@ class SubCommandAddWhiteList : ACommandHandler() {
 
             Config.nonActiveWhiteList.add(qqId)
 
-            message = message.plus("$arg ${CommandReplyMessage.Added.s()}")
+            message = message.plus("$arg ${CommandReplyMessage.Added.s()}\n")
         }
 
         sendMessage(sender, message)

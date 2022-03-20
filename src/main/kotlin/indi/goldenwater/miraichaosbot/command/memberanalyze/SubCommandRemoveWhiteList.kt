@@ -30,7 +30,7 @@ class SubCommandRemoveWhiteList : ACommandHandler() {
 
             Config.nonActiveWhiteList.remove(qqId)
 
-            message = message.plus("$arg ${CommandReplyMessage.Removed.s()}")
+            message = message.plus("$arg ${CommandReplyMessage.Removed.s()}\n")
         }
 
         sendMessage(sender, message)
