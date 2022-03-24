@@ -6,6 +6,7 @@ import indi.goldenwater.miraichaosbot.utils.FileResult
 import indi.goldenwater.miraichaosbot.utils.getRandomImage
 import indi.goldenwater.miraichaosbot.utils.sendMessage
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import net.mamoe.mirai.contact.User
 import net.mamoe.mirai.message.data.Image
@@ -39,7 +40,10 @@ class CommandRandomAcg : ACommandHandler() {
 
         try {
             sendingMessageReceipt.recall()
-            contentMessageReceipt.recallIn(recallDelaySeconds * 1000L)
+            delay((15 * 1e3).toLong())
+            contentMessageReceipt.recall()
+            contentMessageReceipt.recall()
+            contentMessageReceipt.recall()
         } catch (_: IllegalStateException) {
         }
 
