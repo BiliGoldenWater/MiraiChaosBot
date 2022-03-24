@@ -3,7 +3,7 @@ package indi.goldenwater.miraichaosbot.command.song
 import indi.goldenwater.miraichaosbot.api.interfaces.command.ACommandHandler
 import indi.goldenwater.miraichaosbot.api.interfaces.command.DMessageInfo
 import indi.goldenwater.miraichaosbot.command.CommandReplyMessage
-import indi.goldenwater.miraichaosbot.utils.Result
+import indi.goldenwater.miraichaosbot.api.interfaces.type.ResultInfo
 import indi.goldenwater.miraichaosbot.utils.getMusicByName
 import indi.goldenwater.miraichaosbot.utils.sendMessage
 
@@ -14,7 +14,7 @@ class SubCommandSearch : ACommandHandler() {
         val result = getMusicByName(args.joinToString(" "))
 
         when (result.status) {
-            Result.Status.Success -> {
+            ResultInfo.Status.Success -> {
                 sendMessage(sender, result.result ?: CommandReplyMessage.FailedByUnknownReason.m())
             }
             else -> {

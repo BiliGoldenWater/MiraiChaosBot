@@ -11,21 +11,24 @@ import indi.goldenwater.miraichaosbot.command.song.SubCommandSearch
 import indi.goldenwater.miraichaosbot.config.Config
 import indi.goldenwater.miraichaosbot.listener.OnFriendMessageEvent
 import indi.goldenwater.miraichaosbot.listener.OnGroupMessageEvent
-import indi.goldenwater.miraichaosbot.utils.initLogger
+import kotlinx.serialization.json.Json
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
+
+var json: Json = Json {
+    ignoreUnknownKeys = true
+}
 
 object MiraiChaosBot : KotlinPlugin(
     JvmPluginDescription(
         id = "indi.goldenwater.miraichaosbot.MiraiChaosBot",
         name = "MiraiChaosBot",
-        version = "1.4.2",
+        version = "1.5.0",
     ) {
         author("Golden_Water")
     }
 ) {
     override fun onEnable() {
-        initLogger(logger)
         Config.reload()
 
         //region Command register

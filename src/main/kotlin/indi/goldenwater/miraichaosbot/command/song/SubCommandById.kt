@@ -3,8 +3,8 @@ package indi.goldenwater.miraichaosbot.command.song
 import indi.goldenwater.miraichaosbot.api.interfaces.command.ACommandHandler
 import indi.goldenwater.miraichaosbot.api.interfaces.command.DMessageInfo
 import indi.goldenwater.miraichaosbot.command.CommandReplyMessage
-import indi.goldenwater.miraichaosbot.utils.Result
-import indi.goldenwater.miraichaosbot.utils.Result.Status.*
+import indi.goldenwater.miraichaosbot.api.interfaces.type.ResultInfo
+import indi.goldenwater.miraichaosbot.api.interfaces.type.ResultInfo.Status.*
 import indi.goldenwater.miraichaosbot.utils.getMusicById
 import indi.goldenwater.miraichaosbot.utils.sendMessage
 import net.mamoe.mirai.contact.User
@@ -18,7 +18,7 @@ class SubCommandById : ACommandHandler() {
             return true
         }
 
-        val result: Result<MusicShare> = getMusicById(args[0]);
+        val result: ResultInfo<MusicShare> = getMusicById(args[0])
 
         if (result.status == Success) {
             sendMessage(sender, result.result ?: CommandReplyMessage.FailedByUnknownReason.m())
