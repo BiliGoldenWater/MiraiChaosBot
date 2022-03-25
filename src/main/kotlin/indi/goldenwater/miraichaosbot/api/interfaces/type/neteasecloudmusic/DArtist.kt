@@ -7,7 +7,7 @@ data class DArtist(
     var id: Long = 0,
     var name: String?,
     var picUrl: String?,
-    var alias: Array<String> = emptyArray(),
+    @Suppress("ArrayInDataClass") var alias: Array<String> = emptyArray(),
     var albumSize: Int = 0,
     var picId: Long = 0,
     var img1v1Url: String?,

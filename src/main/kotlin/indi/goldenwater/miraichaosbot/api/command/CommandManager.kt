@@ -4,6 +4,7 @@ import indi.goldenwater.miraichaosbot.api.interfaces.command.DMessageInfo
 import indi.goldenwater.miraichaosbot.api.interfaces.command.ICommandHandler
 import indi.goldenwater.miraichaosbot.api.interfaces.type.TCommandHandlers
 
+@Suppress("unused")
 object CommandManager {
     var prefix: String = "&"
 

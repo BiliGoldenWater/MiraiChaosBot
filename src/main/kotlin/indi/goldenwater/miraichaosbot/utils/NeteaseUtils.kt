@@ -25,6 +25,7 @@ fun getProperty(detailString: String, key: String): String {
 suspend fun getMusicById(id: String): ResultInfo<MusicShare> {
     val result = ResultInfo<MusicShare>()
     try {
+        @Suppress("HttpUrlsUsage")
         val musicUrl = "http://music.163.com/song/media/outer/url?id=$id"
         val detail = httpGetText("https://music.163.com/song?id=$id")
         val title = getProperty(detail, "og:title")
@@ -57,6 +58,7 @@ suspend fun getMusicById(id: String): ResultInfo<MusicShare> {
 suspend fun getMusicByName(name: String): ResultInfo<MusicShare> {
     val result = ResultInfo<MusicShare>()
     try {
+        @Suppress("HttpUrlsUsage")
         val searchUrl = """
             |http://music.163.com/api/search/get/web
             |?csrf_token=hlpretag=&hlposttag=&total=true
