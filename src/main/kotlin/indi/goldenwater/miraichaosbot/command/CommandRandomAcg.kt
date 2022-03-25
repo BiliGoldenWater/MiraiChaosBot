@@ -41,7 +41,9 @@ class CommandRandomAcg : ACommandHandler() {
             sendingMessageReceipt.recall()
             delay((15 * 1e3).toLong())
             contentMessageReceipt.recall()
+            delay((1 * 1e3).toLong())
             contentMessageReceipt.recall()
+            delay((1 * 1e3).toLong())
             contentMessageReceipt.recall()
         } catch (_: IllegalStateException) {
         }

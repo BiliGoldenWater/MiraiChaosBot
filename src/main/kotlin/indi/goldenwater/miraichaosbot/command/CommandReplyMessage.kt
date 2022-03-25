@@ -20,7 +20,6 @@ enum class CommandReplyMessage(private val message: String) {
         |${p}help 显示本消息
         |${p}song search <name> 搜索歌曲
         |${p}song byId <id> 根据歌曲id点歌
-        |
         |${p}randomAcg 随机图片
     """.trimMargin()
     ),

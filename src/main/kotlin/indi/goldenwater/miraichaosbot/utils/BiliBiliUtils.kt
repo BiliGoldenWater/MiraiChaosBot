@@ -80,12 +80,16 @@ suspend fun parseBiliBiliVideo(messageInfo: DMessageInfo, msg: String) {
 
             val message: Message = image.plus(
                 """${"\n"}
-                |UP: ${data.owner.name}
-                |标题: ${data.title.cutLength(16)}
-                |简介: ${data.desc.cutLength(40)}
+                |${data.owner.name}
+                |${data.title.cutLength(18)}
                 |
-                |链接: b23.tv/${data.bvid}
-            """.trimMargin()
+                |${
+                    data.desc.cutLength(40).lines()
+                        .joinToString(separator = "\n  %{linePrefix}%", prefix = "  %{linePrefix}%")
+                }
+                |
+                |b23.tv/${data.bvid}
+            """.trimMargin().replace("%{linePrefix}%", "|")
             )
 
             sender.sendMessageWithoutAt(message)
