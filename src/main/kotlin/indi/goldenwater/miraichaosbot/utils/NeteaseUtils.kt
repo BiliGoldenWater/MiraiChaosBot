@@ -26,7 +26,7 @@ suspend fun getMusicById(id: String): ResultInfo<MusicShare> {
     val result = ResultInfo<MusicShare>()
     try {
         val musicUrl = "http://music.163.com/song/media/outer/url?id=$id"
-        val detail = httpGet("https://music.163.com/song?id=$id")
+        val detail = httpGetText("https://music.163.com/song?id=$id")
         val title = getProperty(detail, "og:title")
         if (title == "网易云音乐") {
             result.status = ResultInfo.Status.FailedByUnknownMusicInfo
@@ -65,7 +65,7 @@ suspend fun getMusicByName(name: String): ResultInfo<MusicShare> {
             |&s=${name}
             |&type=${1}
             |""".trimMargin().replace("\n", "")
-        val res = httpGet(searchUrl)
+        val res = httpGetText(searchUrl)
         val searchResult = json.decodeFromString<DSearchResult>(res)
         if (searchResult.code != 200) {
             MiraiChaosBot.logger.error("keyword: \"$name\",code: ${searchResult.code}")
