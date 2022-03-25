@@ -2,10 +2,10 @@ package indi.goldenwater.miraichaosbot.command.song
 
 import indi.goldenwater.miraichaosbot.api.interfaces.command.ACommandHandler
 import indi.goldenwater.miraichaosbot.api.interfaces.command.DMessageInfo
-import indi.goldenwater.miraichaosbot.command.CommandReplyMessage
 import indi.goldenwater.miraichaosbot.api.interfaces.type.ResultInfo
+import indi.goldenwater.miraichaosbot.command.CommandReplyMessage
 import indi.goldenwater.miraichaosbot.utils.getMusicByName
-import indi.goldenwater.miraichaosbot.utils.sendMessage
+import indi.goldenwater.miraichaosbot.utils.sendMessageTo
 
 class SubCommandSearch : ACommandHandler() {
     override suspend fun onCommand(messageInfo: DMessageInfo, command: String, args: Array<String>): Boolean {
@@ -15,10 +15,10 @@ class SubCommandSearch : ACommandHandler() {
 
         when (result.status) {
             ResultInfo.Status.Success -> {
-                sendMessage(sender, result.result ?: CommandReplyMessage.FailedByUnknownReason.m())
+                sender.sendMessageTo(result.result ?: CommandReplyMessage.FailedByUnknownReason.m())
             }
             else -> {
-                sendMessage(sender, result.status.s())
+                sender.sendMessageTo(result.status.s())
             }
         }
 

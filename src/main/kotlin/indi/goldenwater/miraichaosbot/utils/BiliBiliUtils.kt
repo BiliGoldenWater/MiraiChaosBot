@@ -65,12 +65,13 @@ suspend fun parseBiliBiliVideo(messageInfo: DMessageInfo, msg: String) {
         val result = getBiliBiliVideoById(id)
         if (result.status == ResultInfo.Status.Success) {
             val data = result.result ?: return
+            val sender = messageInfo.sender
 
             val picFile = httpGetFile(data.pic).img
-            val image: Image = if (messageInfo.sender is Member) {
-                messageInfo.sender.group.uploadImage(picFile)
+            val image: Image = if (sender is Member) {
+                sender.group.uploadImage(picFile)
             } else {
-                messageInfo.sender.uploadImage(picFile)
+                sender.uploadImage(picFile)
             }
             withContext(Dispatchers.IO) {
                 picFile.close()
@@ -80,15 +81,14 @@ suspend fun parseBiliBiliVideo(messageInfo: DMessageInfo, msg: String) {
             val message: Message = image.plus(
                 """${"\n"}
                 |UP: ${data.owner.name}
-                |
-                |标题: ${data.title}
-                |
+                |标题: ${data.desc.cutLength(16)}
                 |简介: ${data.desc.cutLength(40)}
-                |b23.tv/${data.bvid}
+                |
+                |链接: b23.tv/${data.bvid}
             """.trimMargin()
             )
 
-            sendMessage(messageInfo.sender, message)
+            sender.sendMessageWithoutAt(message)
         }
     }
 }

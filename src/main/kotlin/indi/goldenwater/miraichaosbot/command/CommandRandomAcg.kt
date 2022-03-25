@@ -4,7 +4,7 @@ import indi.goldenwater.miraichaosbot.api.interfaces.command.ACommandHandler
 import indi.goldenwater.miraichaosbot.api.interfaces.command.DMessageInfo
 import indi.goldenwater.miraichaosbot.utils.FileResult
 import indi.goldenwater.miraichaosbot.utils.getRandomImage
-import indi.goldenwater.miraichaosbot.utils.sendMessage
+import indi.goldenwater.miraichaosbot.utils.sendMessageTo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -18,13 +18,12 @@ class CommandRandomAcg : ACommandHandler() {
 
         val sender: User = messageInfo.sender
 
-        val sendingMessageReceipt = sendMessage(sender, CommandReplyMessage.GettingInfo.s())
+        val sendingMessageReceipt = sender.sendMessageTo(CommandReplyMessage.GettingInfo.s())
 
         val result: FileResult = getRandomImage()
         val image: Image = result.img.uploadAsImage(sender)
 
-        val contentMessageReceipt = sendMessage(
-            sender,
+        val contentMessageReceipt = sender.sendMessageTo(
             image.plus(
                 """
                 |

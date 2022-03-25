@@ -14,12 +14,12 @@ fun formatWithTime(member: NormalMember, time: Int): String {
 
 suspend fun senderToMemberCheckPermission(sender: User): Member? {
     if (sender !is Member) {
-        sendMessage(sender, CommandReplyMessage.GroupOnly.s())
+        sender.sendMessageTo(CommandReplyMessage.GroupOnly.s())
         return null
     }
 
     if (sender.permission < MemberPermission.ADMINISTRATOR) {
-        sendMessage(sender, CommandReplyMessage.NoPermission.s())
+        sender.sendMessageTo(CommandReplyMessage.NoPermission.s())
         return null
     }
 

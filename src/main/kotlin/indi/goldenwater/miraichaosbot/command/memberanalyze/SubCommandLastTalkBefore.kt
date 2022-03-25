@@ -4,10 +4,7 @@ import indi.goldenwater.miraichaosbot.api.interfaces.command.ACommandHandler
 import indi.goldenwater.miraichaosbot.api.interfaces.command.DMessageInfo
 import indi.goldenwater.miraichaosbot.command.CommandReplyMessage
 import indi.goldenwater.miraichaosbot.config.Config
-import indi.goldenwater.miraichaosbot.utils.formatWithTime
-import indi.goldenwater.miraichaosbot.utils.getTimeInSeconds
-import indi.goldenwater.miraichaosbot.utils.sendMessage
-import indi.goldenwater.miraichaosbot.utils.senderToMemberCheckPermission
+import indi.goldenwater.miraichaosbot.utils.*
 import net.mamoe.mirai.contact.NormalMember
 import net.mamoe.mirai.message.data.Message
 import net.mamoe.mirai.message.data.PlainText
@@ -24,7 +21,7 @@ class SubCommandLastTalkBefore : ACommandHandler() {
         }
 
         if (lastTalkBefore == Int.MIN_VALUE) {
-            sendMessage(messageInfo.sender, CommandReplyMessage.UnknownUsage.s())
+            sender.sendMessageTo(CommandReplyMessage.UnknownUsage.s())
             return true
         }
 
@@ -44,7 +41,7 @@ class SubCommandLastTalkBefore : ACommandHandler() {
                 message.plus("距上次发言 ${formatWithTime(member, (messageInfo.time) - (member.lastSpeakTimestamp))}\n")
         }
 
-        sendMessage(sender, message.plus("总计: ${resultMembers.size}"))
+        sender.sendMessageTo(message.plus("总计: ${resultMembers.size}"))
 
         return true
     }

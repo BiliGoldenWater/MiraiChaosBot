@@ -9,15 +9,22 @@ import net.mamoe.mirai.message.data.Message
 import net.mamoe.mirai.message.data.PlainText
 import kotlin.reflect.jvm.jvmName
 
-suspend fun sendMessage(target: User, message: String): MessageReceipt<*> {
-    return sendMessage(target, PlainText(message))
+suspend fun User.sendMessageTo(message: String): MessageReceipt<*> {
+    return this.sendMessageTo(PlainText(message))
 }
 
-suspend fun sendMessage(target: User, message: Message): MessageReceipt<*> {
-    if (target is Friend) {
-        return target.sendMessage(message)
-    } else if (target is Member) {
-        return target.group.sendMessage(At(target).plus("\n").plus(message))
+suspend fun User.sendMessageTo(message: Message): MessageReceipt<*> {
+    if (this is Member) {
+        return this.sendMessageWithoutAt(At(this).plus("\n").plus(message))
     }
-    throw Exception("Unknown target ${target::class.jvmName}")
+    return this.sendMessageWithoutAt(message)
+}
+
+suspend fun User.sendMessageWithoutAt(message: Message): MessageReceipt<*> {
+    if (this is Friend) {
+        return this.sendMessage(message)
+    } else if (this is Member) {
+        return this.group.sendMessage(message)
+    }
+    throw Exception("Unknown target ${this::class.jvmName}")
 }

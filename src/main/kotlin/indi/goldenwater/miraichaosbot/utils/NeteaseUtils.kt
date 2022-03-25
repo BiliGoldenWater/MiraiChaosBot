@@ -104,7 +104,7 @@ suspend fun parseNeteaseMusicLink(messageInfo: DMessageInfo, msg: String) {
 
         val result = getMusicById(id)
         if (result.status == ResultInfo.Status.Success) {
-            sendMessage(messageInfo.sender, result.result ?: return)
+            messageInfo.sender.sendMessageTo(result.result ?: return)
         }
     }
 }

@@ -2,7 +2,7 @@ package indi.goldenwater.miraichaosbot.command
 
 import indi.goldenwater.miraichaosbot.api.interfaces.command.ACommandHandler
 import indi.goldenwater.miraichaosbot.api.interfaces.command.DMessageInfo
-import indi.goldenwater.miraichaosbot.utils.sendMessage
+import indi.goldenwater.miraichaosbot.utils.sendMessageTo
 import net.mamoe.mirai.contact.MemberPermission
 import net.mamoe.mirai.contact.NormalMember
 
@@ -13,7 +13,7 @@ class CommandHelp : ACommandHandler() {
             helpMessage += "\n" + CommandReplyMessage.HelpAdmin.s()
         }
 
-        sendMessage(messageInfo.sender, helpMessage)
+        messageInfo.sender.sendMessageTo(helpMessage)
         return true
     }
 }

@@ -4,7 +4,7 @@ import indi.goldenwater.miraichaosbot.api.interfaces.command.ACommandHandler
 import indi.goldenwater.miraichaosbot.api.interfaces.command.DMessageInfo
 import indi.goldenwater.miraichaosbot.command.CommandReplyMessage
 import indi.goldenwater.miraichaosbot.config.Config
-import indi.goldenwater.miraichaosbot.utils.sendMessage
+import indi.goldenwater.miraichaosbot.utils.sendMessageTo
 import indi.goldenwater.miraichaosbot.utils.senderToMemberCheckPermission
 import net.mamoe.mirai.message.data.Message
 import net.mamoe.mirai.message.data.PlainText
@@ -14,7 +14,7 @@ class SubCommandRemoveWhiteList : ACommandHandler() {
         val sender = senderToMemberCheckPermission(messageInfo.sender) ?: return true
 
         if (args.isEmpty()) {
-            sendMessage(sender, CommandReplyMessage.UnknownUsage.s())
+            sender.sendMessageTo(CommandReplyMessage.UnknownUsage.s())
             return true
         }
 
@@ -33,7 +33,7 @@ class SubCommandRemoveWhiteList : ACommandHandler() {
             message = message.plus("$arg ${CommandReplyMessage.Removed.s()}\n")
         }
 
-        sendMessage(sender, message)
+        sender.sendMessage(message)
 
         return true
     }
