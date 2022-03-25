@@ -23,7 +23,7 @@ object MiraiChaosBot : KotlinPlugin(
     JvmPluginDescription(
         id = "indi.goldenwater.miraichaosbot.MiraiChaosBot",
         name = "MiraiChaosBot",
-        version = "1.5.1",
+        version = "1.5.2",
     ) {
         author("Golden_Water")
     }

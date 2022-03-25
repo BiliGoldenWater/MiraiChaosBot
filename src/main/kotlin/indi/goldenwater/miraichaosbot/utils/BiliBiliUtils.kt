@@ -81,7 +81,7 @@ suspend fun parseBiliBiliVideo(messageInfo: DMessageInfo, msg: String) {
             val message: Message = image.plus(
                 """${"\n"}
                 |UP: ${data.owner.name}
-                |标题: ${data.desc.cutLength(16)}
+                |标题: ${data.title.cutLength(16)}
                 |简介: ${data.desc.cutLength(40)}
                 |
                 |链接: b23.tv/${data.bvid}
