@@ -6,10 +6,18 @@ import indi.goldenwater.miraichaosbot.api.interfaces.type.ResultInfo
 import indi.goldenwater.miraichaosbot.api.interfaces.type.neteasecloudmusic.DSearchResult
 import indi.goldenwater.miraichaosbot.api.interfaces.type.neteasecloudmusic.DSong
 import indi.goldenwater.miraichaosbot.json
+import io.ktor.http.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.decodeFromString
+import net.mamoe.mirai.contact.Friend
+import net.mamoe.mirai.contact.Member
+import net.mamoe.mirai.contact.User
+import net.mamoe.mirai.message.data.Audio
 import net.mamoe.mirai.message.data.MusicKind
 import net.mamoe.mirai.message.data.MusicShare
+import net.mamoe.mirai.utils.ExternalResource
 import java.io.IOException
 
 fun getProperty(detailString: String, key: String): String {
@@ -103,10 +111,44 @@ suspend fun parseNeteaseMusicLink(messageInfo: DMessageInfo, msg: String) {
             ?.groups
             ?.get(1)
             ?.value ?: return
+        val sender = messageInfo.sender
 
         val result = getMusicById(id)
         if (result.status == ResultInfo.Status.Success) {
-            messageInfo.sender.sendMessageTo(result.result ?: return)
+            sender.sendMessageTo(result.result ?: return)
         }
     }
+}
+
+suspend fun User.sendNeteaseMusicAudio(musicInfo: MusicShare): Boolean {
+    var resource: ExternalResource? = null
+    val audio: Audio?
+
+    try {
+        resource = httpGet(musicInfo.musicUrl).let {
+            if (it.status == HttpStatusCode.Found) {
+                return@let httpGetFile(it.headers["Location"] ?: return false).file
+            }
+            return false
+        }
+        audio = when (this) {
+            is Member -> this.group.uploadAudio(resource)
+            is Friend -> this.uploadAudio(resource)
+            else -> return false
+        }
+
+        sendMessageWithoutAt(audio)
+    } catch (e: IllegalStateException) {
+        return false
+    } finally {
+        withContext(Dispatchers.IO) {
+            resource?.close()
+        }
+    }
+    return true
+}
+
+suspend fun User.sendMusicAndAudio(musicInfo: MusicShare) {
+    sendMessageTo(musicInfo)
+    sendNeteaseMusicAudio(musicInfo)
 }

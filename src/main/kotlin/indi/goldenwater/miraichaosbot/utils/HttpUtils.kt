@@ -54,5 +54,5 @@ suspend fun httpGetFile(url: String): FileResult {
 
 data class FileResult(
     val url: String,
-    val img: ExternalResource
+    val file: ExternalResource
 )

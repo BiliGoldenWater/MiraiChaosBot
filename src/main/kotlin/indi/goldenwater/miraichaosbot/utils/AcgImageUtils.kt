@@ -15,10 +15,10 @@ suspend fun getRandomImage(): FileResult {
 
 suspend fun User.sendRandomAcgImageTo() {
     val result: FileResult = getRandomImage()
-    val image: Image = result.img.uploadAsImage(this)
+    val image: Image = result.file.uploadAsImage(this)
 
     withContext(Dispatchers.IO) {
-        result.img.close()
+        result.file.close()
     }
 
     this.let {

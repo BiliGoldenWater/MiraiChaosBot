@@ -71,7 +71,7 @@ suspend fun parseBiliBiliVideo(messageInfo: DMessageInfo, msg: String) {
 }
 
 private suspend fun User.sendSimpleBiliBiliVideoInfo(data: BiliBiliVideoInfo) {
-    val picFile = httpGetFile(data.pic).img
+    val picFile = httpGetFile(data.pic).file
     val image: Image = if (this is Member) {
         this.group.uploadImage(picFile)
     } else {
