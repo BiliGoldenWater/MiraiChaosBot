@@ -2,6 +2,7 @@ package indi.goldenwater.miraichaosbot.utils
 
 import net.mamoe.mirai.contact.Friend
 import net.mamoe.mirai.contact.Member
+import net.mamoe.mirai.contact.NormalMember
 import net.mamoe.mirai.contact.User
 import net.mamoe.mirai.message.MessageReceipt
 import net.mamoe.mirai.message.data.At
@@ -27,4 +28,12 @@ suspend fun User.sendMessageWithoutAt(message: Message): MessageReceipt<*> {
         return this.group.sendMessage(message)
     }
     throw Exception("Unknown target ${this::class.jvmName}")
+}
+
+suspend fun User.sendNudge() {
+    if (this is Friend) {
+        this.nudge().sendTo(this)
+    } else if (this is NormalMember) {
+        this.nudge().sendTo(this.group)
+    }
 }

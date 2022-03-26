@@ -11,6 +11,7 @@ import indi.goldenwater.miraichaosbot.command.song.SubCommandSearch
 import indi.goldenwater.miraichaosbot.config.Config
 import indi.goldenwater.miraichaosbot.listener.OnFriendMessageEvent
 import indi.goldenwater.miraichaosbot.listener.OnGroupMessageEvent
+import indi.goldenwater.miraichaosbot.listener.OnNudgeEvent
 import kotlinx.serialization.json.Json
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
@@ -62,6 +63,7 @@ object MiraiChaosBot : KotlinPlugin(
         //region Event register
         OnFriendMessageEvent.register()
         OnGroupMessageEvent.register()
+        OnNudgeEvent.register()
         //endregion
 
         logger.info("Plugin loaded!")
@@ -73,6 +75,7 @@ object MiraiChaosBot : KotlinPlugin(
         //region Event unregister
         OnFriendMessageEvent.unregister()
         OnGroupMessageEvent.unregister()
+        OnNudgeEvent.unregister()
         //endregion
 
         logger.info("Plugin unloaded!")
