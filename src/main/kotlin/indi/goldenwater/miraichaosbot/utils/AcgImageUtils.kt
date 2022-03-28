@@ -13,7 +13,7 @@ suspend fun getRandomImage(): FileResult {
     )
 }
 
-suspend fun User.sendRandomAcgImageTo() {
+suspend fun User.sendRandomAcgImage() {
     val result: FileResult = getRandomImage()
     val image: Image = result.file.uploadAsImage(this)
 
