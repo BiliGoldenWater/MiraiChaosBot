@@ -2,7 +2,6 @@ package indi.goldenwater.miraichaosbot
 
 import indi.goldenwater.miraichaosbot.api.command.CommandManager
 import indi.goldenwater.miraichaosbot.command.CommandHelp
-import indi.goldenwater.miraichaosbot.command.CommandRandomAcg
 import indi.goldenwater.miraichaosbot.command.Commands
 import indi.goldenwater.miraichaosbot.command.memberanalyze.*
 import indi.goldenwater.miraichaosbot.command.song.CommandSong
