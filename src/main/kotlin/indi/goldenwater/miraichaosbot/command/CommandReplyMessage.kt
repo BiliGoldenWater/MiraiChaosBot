@@ -20,9 +20,10 @@ enum class CommandReplyMessage(private val message: String) {
         |${p}help 显示本消息
         |${p}song search <name> 搜索歌曲
         |${p}song byId <id> 根据歌曲id点歌
-        |${p}randomAcg 随机图片
     """.trimMargin()
     ),
+
+    // |${p}randomAcg 随机图片
     HelpAdmin(
         """
         |${p}getNonactiveMembers addWhiteList <qqNumber1> [qqNumber2] ... 添加用户至白名单 (s:g;p:a+)
@@ -35,7 +36,7 @@ enum class CommandReplyMessage(private val message: String) {
     """.trimMargin()
     ),
 
-    GettingInfo("获取信息中"),
+//    GettingInfo("获取信息中"),
 
     Added("已添加"),
     Removed("已移除"),

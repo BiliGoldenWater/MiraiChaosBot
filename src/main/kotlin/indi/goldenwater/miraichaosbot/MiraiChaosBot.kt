@@ -39,7 +39,7 @@ object MiraiChaosBot : KotlinPlugin(
         CommandManager.addCommand(arrayOf(Commands.Song.r(), Commands.ById.r()), SubCommandById())
         CommandManager.addCommand(arrayOf(Commands.Song.r(), Commands.Search.r()), SubCommandSearch())
 
-        CommandManager.addCommand(Commands.RandomAcg.r(), CommandRandomAcg())
+//        CommandManager.addCommand(Commands.RandomAcg.r(), CommandRandomAcg())
 
         CommandManager.addCommand(Commands.GetNonactiveMembers.r(), CommandMemberAnalyze())
         CommandManager.addCommand(

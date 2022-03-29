@@ -7,7 +7,7 @@ plugins {
 }
 
 dependencies {
-    val ktorVersion = "1.6.7"
+    val ktorVersion = "1.6.8"
     implementation("io.ktor:ktor-client-core:$ktorVersion")
     api("net.mamoe:mirai-silk-converter:0.0.5")
 }

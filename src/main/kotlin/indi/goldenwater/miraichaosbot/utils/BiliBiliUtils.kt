@@ -89,7 +89,7 @@ private suspend fun User.sendSimpleBiliBiliVideoInfo(data: BiliBiliVideoInfo) {
                 |
                 |${data.desc.cutLength(40)}
                 |
-                |b23.tv/${data.bvid}
+                |${data.bvid}
             """.trimMargin()
     )
 
