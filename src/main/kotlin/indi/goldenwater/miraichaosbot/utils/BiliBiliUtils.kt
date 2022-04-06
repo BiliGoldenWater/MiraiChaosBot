@@ -6,8 +6,6 @@ import indi.goldenwater.miraichaosbot.api.interfaces.type.ResultInfo
 import indi.goldenwater.miraichaosbot.api.interfaces.type.bilibili.BiliBiliResponse
 import indi.goldenwater.miraichaosbot.api.interfaces.type.bilibili.videoinfo.BiliBiliVideoInfo
 import indi.goldenwater.miraichaosbot.json
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.decodeFromString
 import net.mamoe.mirai.contact.Member
@@ -71,14 +69,11 @@ suspend fun parseBiliBiliVideo(messageInfo: DMessageInfo, msg: String) {
 }
 
 private suspend fun User.sendSimpleBiliBiliVideoInfo(data: BiliBiliVideoInfo) {
-    val picFile = httpGetFile(data.pic).file
+    val picFile = httpGetFile(data.pic).file.toAutoCloseable()
     val image: Image = if (this is Member) {
         this.group.uploadImage(picFile)
     } else {
         this.uploadImage(picFile)
-    }
-    withContext(Dispatchers.IO) {
-        picFile.close()
     }
 
 
