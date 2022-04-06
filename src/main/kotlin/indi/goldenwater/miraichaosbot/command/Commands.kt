@@ -14,6 +14,8 @@ enum class Commands(private val regex: Regex) {
     RemoveWhiteList(Regex("removeWhiteList", RegexOption.IGNORE_CASE)),
     NeverTalk(Regex("neverTalk", RegexOption.IGNORE_CASE)),
     LastTalkBefore(Regex("lastTalkBefore", RegexOption.IGNORE_CASE)),
+
+    ArtifactScore(Regex("artifactScore", RegexOption.IGNORE_CASE))
     ;
 
     fun r(): Regex {

@@ -1,7 +1,9 @@
 package indi.goldenwater.miraichaosbot.command
 
+import indi.goldenwater.miraichaosbot.api.interfaces.type.genshin.ArtifactAttribute
 import indi.goldenwater.miraichaosbot.api.command.CommandManager.prefix as p
 import net.mamoe.mirai.message.data.PlainText
+import kotlin.reflect.full.memberProperties
 
 enum class CommandReplyMessage(private val message: String) {
     /*
@@ -20,6 +22,8 @@ enum class CommandReplyMessage(private val message: String) {
         |${p}help 显示本消息
         |${p}song search <name> 搜索歌曲
         |${p}song byId <id> 根据歌曲id点歌
+        |${p}artifactScore <(${ArtifactAttribute::class.memberProperties.joinToString(separator = "|") { it.name }})-V> 圣遗物分数
+        |  例: ${p}artifactScore cd-46.7|cr-3.9|er-6.5|defP-7.3
     """.trimMargin()
     ),
 

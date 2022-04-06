@@ -1,6 +1,7 @@
 package indi.goldenwater.miraichaosbot
 
 import indi.goldenwater.miraichaosbot.api.command.CommandManager
+import indi.goldenwater.miraichaosbot.command.CommandArtifactScore
 import indi.goldenwater.miraichaosbot.command.CommandHelp
 import indi.goldenwater.miraichaosbot.command.Commands
 import indi.goldenwater.miraichaosbot.command.memberanalyze.*
@@ -14,10 +15,14 @@ import indi.goldenwater.miraichaosbot.listener.OnNudgeEvent
 import kotlinx.serialization.json.Json
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
+import java.awt.Font
+import java.awt.GraphicsEnvironment
 
 var json: Json = Json {
     ignoreUnknownKeys = true
 }
+
+var defaultFont: Font? = null
 
 object MiraiChaosBot : KotlinPlugin(
     JvmPluginDescription(
@@ -29,6 +34,11 @@ object MiraiChaosBot : KotlinPlugin(
     }
 ) {
     override fun onEnable() {
+        defaultFont = Font.createFont(
+            Font.TRUETYPE_FONT,
+            MiraiChaosBot.getResourceAsStream("assets/font/SourceHanSansCN-VF.ttf")
+        )
+        GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(defaultFont)
         Config.reload()
 
         //region Command register
@@ -56,6 +66,11 @@ object MiraiChaosBot : KotlinPlugin(
         CommandManager.addCommand(
             arrayOf(Commands.GetNonactiveMembers.r(), Commands.LastTalkBefore.r()),
             SubCommandLastTalkBefore()
+        )
+
+        CommandManager.addCommand(
+            Commands.ArtifactScore.r(),
+            CommandArtifactScore()
         )
         //endregion
 
