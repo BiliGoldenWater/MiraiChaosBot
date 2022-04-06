@@ -23,7 +23,7 @@ enum class CommandReplyMessage(private val message: String) {
         |${p}song search <name> 搜索歌曲
         |${p}song byId <id> 根据歌曲id点歌
         |${p}artifactScore <(${ArtifactAttribute::class.memberProperties.joinToString(separator = "|") { it.name }})-V> 圣遗物分数
-        |  例: ${p}artifactScore cd-46.7|cr-3.9|er-6.5|defP-7.3
+        |  例: ${p}artifactScore cd-46.62|cr-3.89|er-6.48|defP-7.29
     """.trimMargin()
     ),
 

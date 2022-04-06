@@ -171,9 +171,8 @@ suspend fun User.sendArtifactSortedScoresImage(artifactInfo: String) {
     this.sendMessageTo(
         PlainText(
             """
-                |分数: ${(score.sumInPercentage * 100).roundToInt() / 100}/100
-                |一点点误差建议忽略
-                |白色字体 没背景
+                |分数: ${(score.sumInPercentage * 100.0).roundToInt() / 100.0}/100
+                |白色字 建议点开看
                 |
                 """.trimMargin()
         ).plus(image)
