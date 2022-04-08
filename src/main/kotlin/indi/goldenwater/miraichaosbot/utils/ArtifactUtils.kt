@@ -97,10 +97,10 @@ fun CharacterBuildNameAndScores.toImage(): ExternalResource {
 fun String.toImage(): BufferedImage {
     val font = defaultFont?.deriveFont(48f)
     val lineSplit = this.split("\n")
-    if (lineSplit.isEmpty()) return BufferedImage(0, 0, BufferedImage.TYPE_INT_ARGB)
+    if (lineSplit.isEmpty()) return BufferedImage(0, 0, BufferedImage.TYPE_INT_RGB)
 
     // 测量大小
-    var img = BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB)
+    var img = BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB)
     var g2d = img.createGraphics()
     g2d.font = font
     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
@@ -112,7 +112,7 @@ fun String.toImage(): BufferedImage {
     g2d.dispose()
 
     // 绘制
-    img = BufferedImage(width, totalHeight, BufferedImage.TYPE_INT_ARGB)
+    img = BufferedImage(width, totalHeight, BufferedImage.TYPE_INT_RGB)
     g2d = img.createGraphics()
     g2d.font = font
     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
@@ -172,7 +172,6 @@ suspend fun User.sendArtifactSortedScoresImage(artifactInfo: String) {
         PlainText(
             """
                 |分数: ${(score.sumInPercentage * 100.0).roundToInt() / 100.0}/100
-                |白色字 建议点开看
                 |
                 """.trimMargin()
         ).plus(image)
