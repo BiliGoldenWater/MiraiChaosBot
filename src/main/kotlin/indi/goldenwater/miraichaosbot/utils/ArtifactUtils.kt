@@ -159,7 +159,6 @@ fun String.parseToArtifactAttribute(): ArtifactAttribute {
 suspend fun User.sendArtifactSortedScoresImage(artifactInfo: String) {
     val score = artifactInfo.parseToArtifactAttribute().calcArtifactScore()
     val scoreOfAllCharacterBuild = score.getScoreOfAllCharacterBuild()
-    scoreOfAllCharacterBuild.toSortedString().trim()
 
     val picFile = scoreOfAllCharacterBuild.toImage().toAutoCloseable()
     val image: Image = if (this is Member) {
