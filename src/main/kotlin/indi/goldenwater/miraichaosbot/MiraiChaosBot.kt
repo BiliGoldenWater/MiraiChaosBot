@@ -3,6 +3,7 @@ package indi.goldenwater.miraichaosbot
 import indi.goldenwater.miraichaosbot.api.command.CommandManager
 import indi.goldenwater.miraichaosbot.command.CommandArtifactScore
 import indi.goldenwater.miraichaosbot.command.CommandHelp
+import indi.goldenwater.miraichaosbot.command.CommandRandomAcg
 import indi.goldenwater.miraichaosbot.command.Commands
 import indi.goldenwater.miraichaosbot.command.memberanalyze.*
 import indi.goldenwater.miraichaosbot.command.song.CommandSong
@@ -28,7 +29,7 @@ object MiraiChaosBot : KotlinPlugin(
     JvmPluginDescription(
         id = "indi.goldenwater.miraichaosbot.MiraiChaosBot",
         name = "MiraiChaosBot",
-        version = "1.6.0",
+        version = "1.7.0",
     ) {
         author("Golden_Water")
     }

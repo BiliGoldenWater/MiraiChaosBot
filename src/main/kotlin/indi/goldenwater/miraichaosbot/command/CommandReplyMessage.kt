@@ -22,12 +22,18 @@ enum class CommandReplyMessage(private val message: String) {
         |${p}help 显示本消息
         |${p}song search <name> 搜索歌曲
         |${p}song byId <id> 根据歌曲id点歌
-        |${p}artifactScore <(${ArtifactAttribute::class.memberProperties.joinToString(separator = "|") { it.name }})-V> 圣遗物分数
+        |${p}randomAcg 随机图片
+        |${p}artifactScore <(${
+            ArtifactAttribute::class.memberProperties.joinToString(separator = "|") {
+                ArtifactAttribute().attNameToLocateStr(
+                    it.name
+                )
+            }
+        })-值> 圣遗物分数
         |  例: ${p}artifactScore cd-46.62|cr-3.89|er-6.48|defP-7.29
+        |  例2: ${p}artifactScore 暴击伤害-46.62|暴击率-3.89|元素充能效率-6.48|防御力%-7.29
     """.trimMargin()
     ),
-
-    // |${p}randomAcg 随机图片
     HelpAdmin(
         """
         |${p}getNonactiveMembers addWhiteList <qqNumber1> [qqNumber2] ... 添加用户至白名单 (s:g;p:a+)

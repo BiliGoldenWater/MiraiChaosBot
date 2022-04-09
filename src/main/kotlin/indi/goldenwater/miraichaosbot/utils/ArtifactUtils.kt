@@ -16,7 +16,6 @@ import java.awt.image.BufferedImage
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import javax.imageio.ImageIO
-import kotlin.math.roundToInt
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.full.memberProperties
 
@@ -81,11 +80,11 @@ fun ArtifactScore.getScoreOfAllCharacterBuild(): CharacterBuildNameAndScores {
 }
 
 fun CharacterBuildNameAndScores.toSortedString(): String {
-    val stringBuilder = StringBuilder()
+    val stringBuilder = StringBuilder("这个副属性与角色发展方向的适配程度\n")
 
     this.map { CharacterBuildNameAndScore(it.key, it.value) }
         .sortedByDescending { it.score.sum }
-        .forEach { stringBuilder.append("${it.characterBuildName} ${it.score.sumInPercentage}\n") }
+        .forEach { stringBuilder.append("${it.score.sumInPercentage.roundTo(2)}/100: ${it.characterBuildName}\n") }
 
     return stringBuilder.toString().trim()
 }
@@ -147,6 +146,9 @@ fun String.parseToArtifactAttribute(): ArtifactAttribute {
         val value = Regex("""${it.name}-([0-9.]+)""")
             .find(this)
             ?.groupValues
+            ?.getOrNull(1) ?: Regex("""${ArtifactAttribute().attNameToLocateStr(it.name)}-([0-9.]+)""")
+            .find(this)
+            ?.groupValues
             ?.getOrNull(1) ?: return@forEach
         val doubleValue = value.toDoubleOrNull() ?: return@forEach
 
@@ -170,7 +172,7 @@ suspend fun User.sendArtifactSortedScoresImage(artifactInfo: String) {
     this.sendMessageTo(
         PlainText(
             """
-                |分数: ${(score.sumInPercentage * 100.0).roundToInt() / 100.0}/100
+                |分数: ${score.sumInPercentage.roundTo(2)}/100
                 |
                 """.trimMargin()
         ).plus(image)

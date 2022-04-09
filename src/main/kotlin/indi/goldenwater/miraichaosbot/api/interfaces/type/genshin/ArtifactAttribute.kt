@@ -23,4 +23,22 @@ data class ArtifactAttribute(
      * Crit Damage
      */
     var cd: Double = 0.0
-)
+) {
+    fun attNameToLocateStr(string: String): String {
+        return when (string) {
+            "hp" -> "生命值"
+            "atk" -> "攻击力"
+            "def" -> "防御力"
+
+            "em" -> "元素精通"
+            "hpP" -> "生命值%"
+            "atkP" -> "攻击力%"
+            "defP" -> "防御力%"
+
+            "er" -> "元素充能效率"
+            "cr" -> "暴击率"
+            "cd" -> "暴击伤害"
+            else -> ""
+        }
+    }
+}

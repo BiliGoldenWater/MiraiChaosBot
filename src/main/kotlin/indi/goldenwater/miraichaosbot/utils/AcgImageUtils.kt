@@ -24,7 +24,7 @@ suspend fun User.sendRandomAcgImage() {
     this.let {
         this.sendMessageWithoutAt(buildForwardMessage(this) {
             it.bot says image
-            it.bot says result.url
+            it.bot says result.url.replace(".", "_")
         })
     }
 }
