@@ -143,10 +143,10 @@ fun String.parseToArtifactAttribute(): ArtifactAttribute {
     val result = ArtifactAttribute()
 
     ArtifactAttribute::class.memberProperties.filterIsInstance<KMutableProperty<*>>().forEach {
-        val value = Regex("""${it.name}-([0-9.]+)""")
+        val value = Regex("""${it.name}-([\d.]+)""")
             .find(this)
             ?.groupValues
-            ?.getOrNull(1) ?: Regex("""${ArtifactAttribute().attNameToLocateStr(it.name)}-([0-9.]+)""")
+            ?.getOrNull(1) ?: Regex("""${ArtifactAttribute().attNameToLocateStr(it.name)}-([\d.]+)""")
             .find(this)
             ?.groupValues
             ?.getOrNull(1) ?: return@forEach

@@ -102,8 +102,8 @@ object CharacterArtifactInfos {
         ).parseRecommendText("1. Crit DMG\n2. ATK%\n3. Energy Recharge\n4. Crit Rate\n5. Flat ATK"),
 
         CharacterArtifactInfo(
-            characterName = "神里绫人", buildName = "TBD"
-        ).parseRecommendText(""),
+            characterName = "神里绫人", buildName = "输出"
+        ).parseRecommendText("1. Crit Rate / DMG\n2. ATK%\n3. Energy Recharge\n4. HP%\n5. Elemental Mastery\n6. Flat Attack"),
 
         CharacterArtifactInfo(
             characterName = "刻晴", buildName = "输出: 物理"
