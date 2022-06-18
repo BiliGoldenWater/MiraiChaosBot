@@ -7,10 +7,12 @@ plugins {
 }
 
 dependencies {
+    api("net.mamoe:mirai-silk-converter:0.0.5")
+
     val ktorVersion = "1.6.8"
+    @Suppress("GradlePackageUpdate")
     implementation("io.ktor:ktor-client-core:$ktorVersion")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.4.20")
-    api("net.mamoe:mirai-silk-converter:0.0.5")
 }
 
 group = "indi.goldenwater.miraichaosbot"

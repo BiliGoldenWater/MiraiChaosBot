@@ -79,8 +79,8 @@ private suspend fun User.sendSimpleBiliBiliVideoInfo(data: BiliBiliVideoInfo) {
 
     val message: Message = image.plus(
         """${"\n"}
-                |${data.owner.name}
                 |${data.title.cutLength(18)}
+                |${data.owner.name}
                 |
                 |${data.desc.cutLength(40)}
                 |

@@ -103,7 +103,7 @@ object CharacterArtifactInfos {
 
         CharacterArtifactInfo(
             characterName = "神里绫人", buildName = "输出"
-        ).parseRecommendText("1. Crit Rate / DMG\n2. ATK%\n3. Energy Recharge\n4. HP%\n5. Elemental Mastery\n6. Flat Attack"),
+        ).parseRecommendText("1. Crit Rate / DMG\n2. ATK%\n3. Energy Recharge\n4. HP%\n5. Elemental Mastery\n6. Flat ATK"),
 
         CharacterArtifactInfo(
             characterName = "刻晴", buildName = "输出: 物理"
@@ -245,6 +245,10 @@ object CharacterArtifactInfos {
         CharacterArtifactInfo(
             characterName = "烟绯", buildName = "辅助: 盾"
         ).parseRecommendText("1. Energy Recharge\n2. HP%\n3. Flat HP"),
+
+        CharacterArtifactInfo(
+            characterName = "夜兰", buildName = "TBD"
+        ).parseRecommendText(""),
 
         CharacterArtifactInfo(
             characterName = "宵宫", buildName = "输出"

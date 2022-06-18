@@ -10,11 +10,11 @@ data class CharacterArtifactInfo(
         val recommends = text
             .split("\n")
             .filter { it != "" }
-            .map { it.replaceFirst(Regex("""[0-9]+\. """), "") }
+            .map { it.replaceFirst(Regex("""\d+\. """), "") }
             .map { it.trim() }
 
         var priority = 1.0
-        recommends.forEach { it ->
+        recommends.forEach {
             when (it) {
                 "Flat HP" -> this.data.hp = priority
                 "Flat ATK" -> this.data.atk = priority
